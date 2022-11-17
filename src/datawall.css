@@ -25,3 +25,11 @@ article {
 .blank-text {
     color: #FFF;
 }
+
+.buttons {
+    text-align: center;
+}
+
+.buttons button {
+    width: 60px;
+}
