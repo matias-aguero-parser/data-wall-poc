@@ -43,7 +43,18 @@ article {
     width: 100%;
     background-color: #7f7f7f;
     padding-top: 50px;
-    opacity: 0.9;
+    opacity: 0.95;
+    animation: move-up 3s ease forwards;
+}
+
+@keyframes move-up {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
 }
 
 .modal-background {
@@ -58,6 +69,17 @@ article {
     background-color: #7f7f7f;
     padding-top: 50px;
     opacity: 0.95;
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.95;
+    }
 }
 
 .modal-container {
