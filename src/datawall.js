@@ -19,9 +19,9 @@ function showModal() {
 }
 
 function userHasResponded() {
-    var cookies = document.cookie;
+    alert(document.cookie.split(';'));
 
-    cookies.split(';').forEach(cookie => {
+    document.cookie.split(';').forEach(cookie => {
         var parts = cookie.split('=');
 
         if (parts[0] === 'responded') {
