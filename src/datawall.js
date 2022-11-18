@@ -19,16 +19,18 @@ function showModal() {
 }
 
 function userHasResponded() {
-    alert(document.cookie.split(';'));
+    // alert(document.cookie.split(';'));
 
     document.cookie.split(';').forEach(cookie => {
-        alert("COOKIE: " + cookie);
+        // alert("COOKIE: " + cookie);
         var parts = cookie.split('=');
 
         if (parts[0] === 'responded') {
+            alert('RETURNING TRUE');
             return true;
         }
     });
 
+    alert('RETURNING FALSE');
     return false;
 }
