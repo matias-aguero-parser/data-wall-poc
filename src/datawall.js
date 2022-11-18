@@ -25,7 +25,7 @@ function userHasResponded() {
         var parts = cookie.split('=');
 
         if (parts[0] === 'responded') {
-            return parts[1] === 'true';
+            return true;
         }
     });
 
