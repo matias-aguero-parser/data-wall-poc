@@ -33,3 +33,85 @@ article {
 .buttons button {
     width: 60px;
 }
+
+.blocker-container {
+    display: none;
+    position: fixed;
+    top: 300px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #7f7f7f;
+    padding-top: 50px;
+    opacity: 0.9;
+}
+
+.modal-background {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #7f7f7f;
+    padding-top: 50px;
+    opacity: 0.95;
+}
+
+.modal-container {
+    display: flex;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+
+.modal {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.modal-text {
+    font-size: 24px;
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+}
+
+.button-yes {
+    background-color: blue;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.button-no {
+    background-color: grey;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.invisible {
+    display: none;
+}
+
+.display-container {
+    text-align: center;
+    margin-top: 20px;
+}
