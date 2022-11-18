@@ -19,18 +19,15 @@ function showModal() {
 }
 
 function userHasResponded() {
-    // alert(document.cookie.split(';'));
+    var responded = false;
 
     document.cookie.split(';').forEach(cookie => {
-        // alert("COOKIE: " + cookie);
         var parts = cookie.split('=');
 
         if (parts[0] === 'responded') {
-            alert('RETURNING TRUE');
-            return true;
+            responded = true;
         }
     });
 
-    alert('RETURNING FALSE');
-    return false;
+    return responded;
 }
