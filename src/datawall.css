@@ -50,7 +50,7 @@ article {
 
 @media screen and (min-height: 720px) {
     .blocker-container {
-        top: 25%;
+        top: 50%;
     }
 }
 
