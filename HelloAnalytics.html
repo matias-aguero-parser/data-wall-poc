@@ -33,17 +33,12 @@
         immediate: useImmdiate
       };
 
-      // alert('PRE');
-
       gapi.auth.authorize(authData, function (response) {
         var authButton = document.getElementById('auth-button');
-        alert('RESPONSE: ' + response);
         if (response.error) {
-          alert('ERROR' + response.error);
           authButton.hidden = false;
         }
         else {
-          // alert('OK');
           authButton.hidden = true;
           queryAccounts();
         }
@@ -52,7 +47,6 @@
 
 
     function queryAccounts() {
-      alert('QUERYING ACCOUNTS');
       // Load the Google Analytics client library.
       gapi.client.load('analytics', 'v3').then(function () {
 
