@@ -17,7 +17,7 @@
   <script>
 
     // Replace with your client ID from the developer console.
-    var CLIENT_ID = '18953773995-02mt8q7sfc5pkjqa16g2673k4iuikh6r.apps.googleusercontent.com';
+    var CLIENT_ID = '781904685582-s036s9ev5ct2rtutslg6qgvdfjob19tj.apps.googleusercontent.com';
 
     // Set authorized scope.
     var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
@@ -33,12 +33,17 @@
         immediate: useImmdiate
       };
 
+      // alert('PRE');
+
       gapi.auth.authorize(authData, function (response) {
         var authButton = document.getElementById('auth-button');
+        alert('RESPONSE: ' + response);
         if (response.error) {
+          alert('ERROR' + response.error);
           authButton.hidden = false;
         }
         else {
+          // alert('OK');
           authButton.hidden = true;
           queryAccounts();
         }
@@ -47,6 +52,7 @@
 
 
     function queryAccounts() {
+      alert('QUERYING ACCOUNTS');
       // Load the Google Analytics client library.
       gapi.client.load('analytics', 'v3').then(function () {
 
