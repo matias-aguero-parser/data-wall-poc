@@ -15,9 +15,9 @@ const COOKIE_ACTIVE_SESSION_NAME = `${COOKIE_PREFIX}_ACTIVE_SESSION`;
 const COOKIE_SESSIONS_PREFIX = `${COOKIE_PREFIX}_SESSIONS`;
 const COOKIE_RESPONSE = `${COOKIE_PREFIX}_RESPONSE`;
 
-// Desicion variables
+// Decision variables
 const BRAND_LOVERS_SESSIONS_QTY = 15;
-//const BRAND_LOVERS_SESSION_READS_QTY = 3;
+// const BRAND_LOVERS_SESSION_READS_QTY = 3;
 
 // Article Categories / Tags
 const ALLOWED_ARTICLE_TAGS = ['Sport', 'Nostalgia'];
@@ -32,6 +32,26 @@ function dismissModal(selection = true) {
     document.body.style.overflow = 'scroll';
 
     setCookieInDays(COOKIE_RESPONSE, selection, USER_REPLY_EXPIRES_IN_DAYS);
+}
+
+function showRA() {
+    document.getElementById("ra-modal-container").style.display = "flex";
+    document.body.style.overflow = 'hidden';
+}
+
+function dismissRA() {
+    document.getElementById("ra-modal-container").style.display = "none";
+    document.body.style.overflow = 'scroll';
+}
+
+function showBC() {
+    document.getElementById("bc-modal-container").style.display = "flex";
+    document.body.style.overflow = 'hidden';
+}
+
+function dismissBC() {
+    document.getElementById("bc-modal-container").style.display = "none";
+    document.body.style.overflow = 'scroll';
 }
 
 /**
@@ -104,8 +124,8 @@ function userHasResponded() {
  */
 function setCookieInDays(cname, cvalue, exdays = 30) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
@@ -118,8 +138,8 @@ function setCookieInDays(cname, cvalue, exdays = 30) {
  */
 function setCookieInMinutes(cname, cvalue, minutes = 30) {
     var d = new Date();
-    d.setTime(d.getTime() + (minutes*60*1000));
-    var expires = "expires="+ d.toUTCString();
+    d.setTime(d.getTime() + (minutes * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
@@ -133,7 +153,7 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -187,13 +207,13 @@ function countActiveSession() {
         const sessionCookies = document.cookie
             .split(';')
             .filter(cookieString => cookieString.trim().startsWith(COOKIE_SESSIONS_PREFIX));
-        
+
         // get counts from session cookies
         const sessionValues = sessionCookies.map(x => x.split('=')[1]);
-        
+
         // count total of session cookies
         count = sessionValues.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue));
-    } catch(e) {
+    } catch (e) {
         console.log(e);
     }
 

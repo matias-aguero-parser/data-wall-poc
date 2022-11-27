@@ -48,12 +48,6 @@ article {
     animation: move-up 3s ease forwards;
 }
 
-@media screen and (min-height: 720px) {
-    .blocker-container {
-        top: 50%;
-    }
-}
-
 @keyframes move-up {
     from {
         transform: translateY(100%);
@@ -64,94 +58,12 @@ article {
     }
 }
 
-.modal-background {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    padding-top: 50px;
-    animation: fadeIn 3s;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-.modal-container {
+.display-buttons {
     display: flex;
     justify-content: center;
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
+    margin: 30px 0px;
 }
 
-.modal {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid black;
-    border-radius: 10px;
-    background-color: white;
-    padding: 20px;
-}
-
-.modal-header {
-    width: 100%;
-    background-color: navy;
-    color: white;
-}
-
-.modal-header p {
-    padding-left: 30px;
-    font-weight: bold;
-}
-
-.modal-text {
-    font-size: 24px;
-    text-align: center;
-}
-
-.modal-buttons {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.button-yes {
-    background-color: green;
-    border-radius: 5px;
-    color: white;
-    padding: 10px 20px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.button-no {
-    background-color: grey;
-    border-radius: 5px;
-    color: white;
-    padding: 10px 20px;
-    font-size: 20px;
-    margin-left: 30px;
-    cursor: pointer;
-}
-
-.invisible {
-    display: none;
-}
-
-.display-container {
-    text-align: center;
-    margin-top: 20px;
+.display-buttons button+button {
+    margin-left: 20px;
 }
