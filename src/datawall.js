@@ -1,6 +1,7 @@
 /* ----- CONFIGURATIONS ----- */
 
 const WAIT_TO_LOAD_POPUP_IN_SECONDS = 10;
+const POPUP_HTML_ID = 'ra-modal-container';
 
 // Feature Flags - Features can be disabled setting flags to false
 const DATA_WALL_FLAG = true;
@@ -105,7 +106,7 @@ function isArticleFromAllowedTags() {
 
 function showModal() {
     if (!userHasResponded()) {
-        document.getElementById("blocker-container").style.display = "block";
+        document.getElementById(POPUP_HTML_ID).style.display = "flex";
         // document.getElementById("modal-background").style.display = "flex";
         document.body.style.overflow = 'hidden';
     }
