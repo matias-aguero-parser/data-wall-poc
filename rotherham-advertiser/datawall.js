@@ -4,55 +4,31 @@ const WAIT_TO_LOAD_POPUP_IN_SECONDS = 10;
 const POPUP_HTML_ID = 'ra-modal-container';
 
 // Feature Flags - Features can be disabled setting flags to false
-const DATA_WALL_FLAG = true;
-const DATA_WALL_CATEGORIES_FLAG = false;
+const DATA_WALL_FEATURE_FLAG = true;
+const DATA_WALL_SUBSCRIBER_FEATURE_FLAG = false;
 
 // Cookies
 const SESSION_EXPIRES_IN_MINUTES = 30;
 const COUNT_SESSIONS_EXPIRES_IN_DAYS = 30;
 const USER_REPLY_EXPIRES_IN_DAYS = 14;
+
+// Decision variables
+const BRAND_LOVERS_SESSIONS_QTY = 15;
+
+/* ----- END OF CONFIGURATIONS ----- */
+
 const COOKIE_PREFIX = 'DATA_WALL';
 const COOKIE_ACTIVE_SESSION_NAME = `${COOKIE_PREFIX}_ACTIVE_SESSION`;
 const COOKIE_SESSIONS_PREFIX = `${COOKIE_PREFIX}_SESSIONS`;
 const COOKIE_RESPONSE = `${COOKIE_PREFIX}_RESPONSE`;
 
-// Decision variables
-const BRAND_LOVERS_SESSIONS_QTY = 15;
-// const BRAND_LOVERS_SESSION_READS_QTY = 3;
+evaluateDataWall();
 
-// Article Categories / Tags
-const ALLOWED_ARTICLE_TAGS = ['Sport', 'Nostalgia'];
-
-/* ----- END OF CONFIGURATIONS ----- */
-
-setTimeout("evaluateDataWall()", WAIT_TO_LOAD_POPUP_IN_SECONDS * 1000);
-
-function dismissModal(selection = true) {
-    document.getElementById("blocker-container").style.display = "none";
-    // document.getElementById("modal-background").style.display = "none";
+function dismissModal(selection = 'NO') {
+    document.getElementById(POPUP_HTML_ID).style.display = "none";
     document.body.style.overflow = 'scroll';
 
     setCookieInDays(COOKIE_RESPONSE, selection, USER_REPLY_EXPIRES_IN_DAYS);
-}
-
-function showRA() {
-    document.getElementById("ra-modal-container").style.display = "flex";
-    document.body.style.overflow = 'hidden';
-}
-
-function dismissRA() {
-    document.getElementById("ra-modal-container").style.display = "none";
-    document.body.style.overflow = 'scroll';
-}
-
-function showBC() {
-    document.getElementById("bc-modal-container").style.display = "flex";
-    document.body.style.overflow = 'hidden';
-}
-
-function dismissBC() {
-    document.getElementById("bc-modal-container").style.display = "none";
-    document.body.style.overflow = 'scroll';
 }
 
 /**
@@ -61,19 +37,19 @@ function dismissBC() {
 function evaluateDataWall() {
     trackUsers();
 
-    if (!DATA_WALL_FLAG) {
+    if (!DATA_WALL_FEATURE_FLAG) {
         // stop here if the flag is disabled
         return;
     }
 
-    if (isSubscriberUser()) {
+    if (DATA_WALL_SUBSCRIBER_FEATURE_FLAG && isSubscriberUser()) {
         // do not show popup for subscriber users
         return;
     }
 
     if (countActiveSession() >= BRAND_LOVERS_SESSIONS_QTY) {
         // if user meet rules, then render data wall popup
-        showModal();
+        setTimeout("showModal()", WAIT_TO_LOAD_POPUP_IN_SECONDS * 1000);
     }
 }
 
@@ -88,31 +64,14 @@ function isSubscriberUser() {
     return false;
 }
 
-/**
- * Validates if article is about one of ALLOWED_ARTICLE_TAGS
- * 
- * @returns 
- */
-function isArticleFromAllowedTags() {
-    if (!DATA_WALL_CATEGORIES_FLAG) {
-        // stop here if the flag is disabled
-        return;
-    }
-
-    // TODO - TO IMPLEMENT
-
-    return false;
-}
-
 function showModal() {
-    if (!userHasResponded()) {
+    if (!hasUserResponded()) {
         document.getElementById(POPUP_HTML_ID).style.display = "flex";
-        // document.getElementById("modal-background").style.display = "flex";
         document.body.style.overflow = 'hidden';
     }
 }
 
-function userHasResponded() {
+function hasUserResponded() {
     return getCookie(COOKIE_RESPONSE) ? true : false;
 }
 

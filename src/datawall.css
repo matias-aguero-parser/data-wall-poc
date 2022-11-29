@@ -9,61 +9,13 @@ h1 {
     font-weight: bold;
 }
 
-article {
+.container {
     width: auto;
     max-width: 800px;
     min-width: 200px;
     margin: 0 auto;
     font-size: large;
-}
-
-.img-responsive {
-    width: 100%;
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
-.blank-text {
-    color: #FFF;
-}
-
-.buttons {
-    text-align: center;
-}
-
-.buttons button {
-    width: 60px;
-}
-
-.blocker-container {
-    display: none;
-    position: fixed;
-    top: 300px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    padding-top: 50px;
-    animation: move-up 3s ease forwards;
-}
-
-@keyframes move-up {
-    from {
-        transform: translateY(100%);
-    }
-
-    to {
-        transform: translateY(0%);
-    }
-}
-
-.display-buttons {
-    display: flex;
-    justify-content: center;
-    margin: 30px 0px;
-}
-
-.display-buttons button+button {
-    margin-left: 20px;
+    height: 200px;
+    padding-top: 80px;
+    border: 1px solid;
 }
