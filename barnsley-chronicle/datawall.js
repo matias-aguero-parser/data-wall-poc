@@ -151,7 +151,7 @@ function trackUsers() {
     const count = currentVisitCookie ? parseInt(currentVisitCookie) + 1 : 1;
 
     // Create or update current visit cookie
-    setCookieInDays(visitCookieName, count, 30);
+    setCookieInDays(visitCookieName, count, COUNT_SESSIONS_EXPIRES_IN_DAYS);
 }
 
 /**

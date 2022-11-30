@@ -11,15 +11,19 @@ const DATA_WALL_SUBSCRIBER_FEATURE_FLAG = false;
 const SESSION_EXPIRES_IN_MINUTES = 30;
 const COUNT_SESSIONS_EXPIRES_IN_DAYS = 30;
 const USER_REPLY_EXPIRES_IN_DAYS = 14;
+const BRAND_LOVERS_PAGE_VIEWS_EXPIRE_IN_DAYS = 5;
 
-// Decision variables
+// Brand Lovers - Decision variables
 const BRAND_LOVERS_SESSIONS_QTY = 15;
+const BRAND_LOVERS_PAGE_VIEWS_MIN_QTY = 3;
+const BRAND_LOVERS_PAGE_VIEWS_2ND_WORDING_QTY = 10;
 
 /* ----- END OF CONFIGURATIONS ----- */
 
 const COOKIE_PREFIX = 'DATA_WALL';
 const COOKIE_ACTIVE_SESSION_NAME = `${COOKIE_PREFIX}_ACTIVE_SESSION`;
 const COOKIE_SESSIONS_PREFIX = `${COOKIE_PREFIX}_SESSIONS`;
+const COOKIE_BRAND_LOVERS_PAGE_VIEWS = `${COOKIE_PREFIX}_BRAND_LOVERS_PAGE_VIEWS`;
 const COOKIE_RESPONSE = `${COOKIE_PREFIX}_RESPONSE`;
 
 evaluateDataWall();
@@ -48,8 +52,16 @@ function evaluateDataWall() {
     }
 
     if (countActiveSession() >= BRAND_LOVERS_SESSIONS_QTY) {
-        // if user meet rules, then render data wall popup
-        setTimeout("showModal()", WAIT_TO_LOAD_POPUP_IN_SECONDS * 1000);
+        // count page views only if user is a brand lover
+        const brandLoverPageViewsQty = countBrandLoverPageViews();
+
+        if (brandLoverPageViewsQty >= BRAND_LOVERS_PAGE_VIEWS_MIN_QTY) {
+            if (brandLoverPageViewsQty >= BRAND_LOVERS_PAGE_VIEWS_2ND_WORDING_QTY) {
+                // TODO set 2nd popup wording by JS
+            }
+
+            setTimeout("showModal()", WAIT_TO_LOAD_POPUP_IN_SECONDS * 1000);
+        }
     }
 }
 
@@ -133,6 +145,13 @@ function getCookie(cname) {
 function trackUsers() {
     const now = new Date();
 
+    // if user is a Brand Lover, then track page views
+    if (countActiveSession() >= BRAND_LOVERS_SESSIONS_QTY) {
+        let pageViews = parseInt(getCookie(COOKIE_BRAND_LOVERS_PAGE_VIEWS) || 0);
+        pageViews++;
+        setCookieInDays(COOKIE_BRAND_LOVERS_PAGE_VIEWS, pageViews, BRAND_LOVERS_PAGE_VIEWS_EXPIRE_IN_DAYS);
+    }
+
     // Validate if the user is still on active session
     const session = getCookie(COOKIE_ACTIVE_SESSION_NAME);
     if (session) {
@@ -151,7 +170,7 @@ function trackUsers() {
     const count = currentVisitCookie ? parseInt(currentVisitCookie) + 1 : 1;
 
     // Create or update current visit cookie
-    setCookieInDays(visitCookieName, count, 30);
+    setCookieInDays(visitCookieName, count, COUNT_SESSIONS_EXPIRES_IN_DAYS);
 }
 
 /**
@@ -173,6 +192,23 @@ function countActiveSession() {
 
         // count total of session cookies
         count = sessionValues.reduce((accumulator, currentValue) => parseInt(accumulator) + parseInt(currentValue));
+    } catch (e) {
+        console.log(e);
+    }
+
+    return count;
+}
+
+/**
+ * Count number of page views when the user is a brand lover
+ * 
+ * @returns total number of page views
+ */
+ function countBrandLoverPageViews() {
+    let count = 0;
+
+    try {
+        count = parseInt(getCookie(COOKIE_BRAND_LOVERS_PAGE_VIEWS) || 0);
     } catch (e) {
         console.log(e);
     }
