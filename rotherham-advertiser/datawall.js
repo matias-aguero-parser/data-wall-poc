@@ -1,7 +1,9 @@
 /* ----- CONFIGURATIONS ----- */
 
-const WAIT_TO_LOAD_POPUP_IN_SECONDS = 10;
+const WAIT_TO_LOAD_POPUP_IN_SECONDS = 15;
 const POPUP_HTML_ID = 'ra-modal-container';
+const POPUP_MAIN_TEXT_ID = 'datawall-main-text';
+const POPUP_MAIN_TEXT_2ND_WORDING = 'In order to sustain our future we may have to begin charging for some of our content. Would you be prepared to pay for this type of content?';
 
 // Feature Flags - Features can be disabled setting flags to false
 const DATA_WALL_FEATURE_FLAG = true;
@@ -10,8 +12,8 @@ const DATA_WALL_SUBSCRIBER_FEATURE_FLAG = false;
 // Cookies
 const SESSION_EXPIRES_IN_MINUTES = 30;
 const COUNT_SESSIONS_EXPIRES_IN_DAYS = 30;
-const USER_REPLY_EXPIRES_IN_DAYS = 14;
-const BRAND_LOVERS_PAGE_VIEWS_EXPIRE_IN_DAYS = 5;
+const USER_REPLY_EXPIRES_IN_DAYS = 30;
+const BRAND_LOVERS_PAGE_VIEWS_EXPIRE_IN_DAYS = 7;
 
 // Brand Lovers - Decision variables
 const BRAND_LOVERS_SESSIONS_QTY = 15;
@@ -25,22 +27,28 @@ const COOKIE_ACTIVE_SESSION_NAME = `${COOKIE_PREFIX}_ACTIVE_SESSION`;
 const COOKIE_SESSIONS_PREFIX = `${COOKIE_PREFIX}_SESSIONS`;
 const COOKIE_BRAND_LOVERS_PAGE_VIEWS = `${COOKIE_PREFIX}_BRAND_LOVERS_PAGE_VIEWS`;
 const COOKIE_RESPONSE = `${COOKIE_PREFIX}_RESPONSE`;
+const COOKIE_2ND_RESPONSE = `${COOKIE_PREFIX}_2ND_RESPONSE`;
 
-evaluateDataWall();
+trackUsers();
+setTimeout("evaluateDataWall()", WAIT_TO_LOAD_POPUP_IN_SECONDS * 1000);
 
 function dismissModal(selection = 'NO') {
     document.getElementById(POPUP_HTML_ID).style.display = "none";
     document.body.style.overflow = 'scroll';
 
-    setCookieInDays(COOKIE_RESPONSE, selection, USER_REPLY_EXPIRES_IN_DAYS);
+    const response = getCookie(COOKIE_RESPONSE);
+    if (response) {
+        setCookieInDays(COOKIE_2ND_RESPONSE, selection, USER_REPLY_EXPIRES_IN_DAYS);
+        setCookieInDays(COOKIE_RESPONSE, response, USER_REPLY_EXPIRES_IN_DAYS);
+    } else {
+        setCookieInDays(COOKIE_RESPONSE, selection, USER_REPLY_EXPIRES_IN_DAYS);
+    }
 }
 
 /**
  * Evaluates to show or avoid data wall popup
  */
 function evaluateDataWall() {
-    trackUsers();
-
     if (!DATA_WALL_FEATURE_FLAG) {
         // stop here if the flag is disabled
         return;
@@ -51,18 +59,36 @@ function evaluateDataWall() {
         return;
     }
 
+    const response = getCookie(COOKIE_RESPONSE);
+    const secondResponse = getCookie(COOKIE_2ND_RESPONSE);
+    if (response === 'YES' || secondResponse) {
+        // do not show popup
+        return;
+    }
+
     if (countActiveSession() >= BRAND_LOVERS_SESSIONS_QTY) {
         // count page views only if user is a brand lover
         const brandLoverPageViewsQty = countBrandLoverPageViews();
 
-        if (brandLoverPageViewsQty >= BRAND_LOVERS_PAGE_VIEWS_MIN_QTY) {
-            if (brandLoverPageViewsQty >= BRAND_LOVERS_PAGE_VIEWS_2ND_WORDING_QTY) {
-                // TODO set 2nd popup wording by JS
-            }
-
-            setTimeout("showModal()", WAIT_TO_LOAD_POPUP_IN_SECONDS * 1000);
+        // after X number of views and if user have replied NO, then show the popup again with different wording
+        if (response === 'NO' && brandLoverPageViewsQty >= BRAND_LOVERS_PAGE_VIEWS_2ND_WORDING_QTY) {
+            replacePopUpTextBy2ndWording();
+            showModal();
+            return;
+        }
+        
+        // if no answer and page views reach minumun, then show the popup
+        if (!response && brandLoverPageViewsQty >= BRAND_LOVERS_PAGE_VIEWS_MIN_QTY) {
+            showModal();
         }
     }
+}
+
+/**
+ * Replace popup text by a another wording
+ */
+function replacePopUpTextBy2ndWording() {
+    document.getElementById(POPUP_MAIN_TEXT_ID).innerHTML = POPUP_MAIN_TEXT_2ND_WORDING;
 }
 
 /**
@@ -76,15 +102,12 @@ function isSubscriberUser() {
     return false;
 }
 
+/**
+ * Make PopUp to be visible
+ */
 function showModal() {
-    if (!hasUserResponded()) {
-        document.getElementById(POPUP_HTML_ID).style.display = "flex";
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function hasUserResponded() {
-    return getCookie(COOKIE_RESPONSE) ? true : false;
+    document.getElementById(POPUP_HTML_ID).style.display = "flex";
+    document.body.style.overflow = 'hidden';
 }
 
 /**

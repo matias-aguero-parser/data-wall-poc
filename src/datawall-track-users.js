@@ -2,6 +2,7 @@
 
 // Cookies
 const SESSION_EXPIRES_IN_MINUTES = 30;
+const COUNT_SESSIONS_EXPIRES_IN_DAYS = 30;
 const COOKIE_PREFIX = 'DATA_WALL';
 const COOKIE_ACTIVE_SESSION_NAME = `${COOKIE_PREFIX}_ACTIVE_SESSION`;
 const COOKIE_SESSIONS_PREFIX = `${COOKIE_PREFIX}_SESSIONS`;
@@ -87,5 +88,5 @@ function trackUsers() {
     const count = currentVisitCookie ? parseInt(currentVisitCookie) + 1 : 1;
 
     // Create or update current visit cookie
-    setCookieInDays(visitCookieName, count, 30);
+    setCookieInDays(visitCookieName, count, COUNT_SESSIONS_EXPIRES_IN_DAYS);
 }
