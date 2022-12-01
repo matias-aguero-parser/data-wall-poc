@@ -3,7 +3,7 @@
 const WAIT_TO_LOAD_POPUP_IN_SECONDS = 15;
 const POPUP_HTML_ID = 'ra-modal-container';
 const POPUP_MAIN_TEXT_ID = 'datawall-main-text';
-const POPUP_MAIN_TEXT_2ND_WORDING = 'In order to sustain our future we may have to begin charging for some of our content. Would you be prepared to pay for this type of content?';
+const POPUP_MAIN_TEXT_2ND_WORDING = 'As a loyal reader you are aware we are interested in your views on the possibility of paying for content to enable us to sustain the quality journalism that has served the town since 1858. Please let us know if you would be prepared to support us by taking out a small monthly subscription.';
 
 // Axate
 const AXATE_WRAPPER_ID = 'axate-wallet-wrapper';
