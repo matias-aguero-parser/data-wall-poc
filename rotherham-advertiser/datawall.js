@@ -5,9 +5,13 @@ const POPUP_HTML_ID = 'ra-modal-container';
 const POPUP_MAIN_TEXT_ID = 'datawall-main-text';
 const POPUP_MAIN_TEXT_2ND_WORDING = 'In order to sustain our future we may have to begin charging for some of our content. Would you be prepared to pay for this type of content?';
 
+// Axate
+const AXATE_WRAPPER_ID = 'axate-wallet-wrapper';
+const AXATE_SUBSCRIBER_ATTRIBUTE_ID = 'data-subscribed-at';
+
 // Feature Flags - Features can be disabled setting flags to false
 const DATA_WALL_FEATURE_FLAG = true;
-const DATA_WALL_SUBSCRIBER_FEATURE_FLAG = false;
+const DATA_WALL_SUBSCRIBER_FEATURE_FLAG = true;
 
 // Cookies
 const SESSION_EXPIRES_IN_MINUTES = 30;
@@ -76,7 +80,7 @@ function evaluateDataWall() {
             showModal();
             return;
         }
-        
+
         // if no answer and page views reach minumun, then show the popup
         if (!response && brandLoverPageViewsQty >= BRAND_LOVERS_PAGE_VIEWS_MIN_QTY) {
             showModal();
@@ -92,12 +96,20 @@ function replacePopUpTextBy2ndWording() {
 }
 
 /**
- * Validates if user already paid a subscription
+ * Validates if user already paid an Axate monthly subscription
  * 
- * @returns 
+ * @returns true ONLY if user is a monthly subscriber
  */
 function isSubscriberUser() {
-    // TODO - TO IMPLEMENT
+    var wrapper = document.getElementById(AXATE_WRAPPER_ID);
+
+    if (wrapper) {
+        var attribute = wrapper.getAttribute(AXATE_SUBSCRIBER_ATTRIBUTE_ID);
+
+        if (attribute !== null) {
+            return true;
+        }
+    }
 
     return false;
 }
@@ -227,7 +239,7 @@ function countActiveSession() {
  * 
  * @returns total number of page views
  */
- function countBrandLoverPageViews() {
+function countBrandLoverPageViews() {
     let count = 0;
 
     try {
