@@ -118,8 +118,12 @@ function isSubscriberUser() {
  * Make PopUp to be visible
  */
 function showModal() {
-    document.getElementById(POPUP_HTML_ID).style.display = "flex";
-    document.body.style.overflow = 'hidden';
+    const popup = document.getElementById(POPUP_HTML_ID);
+    
+    if (popup) {
+        popup.style.display = "flex";
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 /**
