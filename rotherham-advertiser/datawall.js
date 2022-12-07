@@ -10,7 +10,7 @@ const AXATE_WRAPPER_ID = 'axate-wallet-wrapper';
 const AXATE_SUBSCRIBER_ATTRIBUTE_ID = 'data-subscribed-at';
 
 // Feature Flags - Features can be disabled setting flags to false
-const DATA_WALL_FEATURE_FLAG = true;
+const DATA_WALL_FEATURE_FLAG = false;
 const DATA_WALL_SUBSCRIBER_FEATURE_FLAG = true;
 
 // Cookies
@@ -20,7 +20,7 @@ const USER_REPLY_EXPIRES_IN_DAYS = 30;
 const BRAND_LOVERS_PAGE_VIEWS_EXPIRE_IN_DAYS = 7;
 
 // Brand Lovers - Decision variables
-const BRAND_LOVERS_SESSIONS_QTY = 15;
+const BRAND_LOVERS_SESSIONS_QTY = 2;
 const BRAND_LOVERS_PAGE_VIEWS_MIN_QTY = 3;
 const BRAND_LOVERS_PAGE_VIEWS_2ND_WORDING_QTY = 10;
 
@@ -119,7 +119,7 @@ function isSubscriberUser() {
  */
 function showModal() {
     const popup = document.getElementById(POPUP_HTML_ID);
-    
+
     if (popup) {
         popup.style.display = "flex";
         document.body.style.overflow = 'hidden';
