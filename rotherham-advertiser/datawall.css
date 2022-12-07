@@ -1,5 +1,4 @@
-/* Rotherham Advertiser */
-.ra-modal-container {
+.datawall-modal-container {
     /* ----- CONFIGURATIONS ----- */
 
     --modal-background: rgba(33, 41, 52, 0.75);
@@ -30,7 +29,7 @@
     }
 }
 
-.ra-modal {
+.datawall-modal {
     display: flex;
     flex-direction: column;
     width: 550px;
@@ -41,27 +40,27 @@
     text-align: center;
 }
 
-.ra-modal-body {
+.datawall-modal-body {
     padding: 15px 30px;
 }
 
-.ra-modal-logo {
+.datawall-modal-logo {
     display: flex;
     justify-content: center;
 }
 
-.ra-modal-logo img {
+.datawall-modal-logo img {
     width: 180px;
 }
 
-.ra-modal-footer {
+.datawall-modal-footer {
     display: flex;
     justify-content: center;
     box-shadow: rgb(0 0 0 / 10%) 0px -2px 4px 0px;
     padding: 15px 30px;
 }
 
-.ra-button-yes {
+.datawall-button-yes {
     height: 40px;
     width: 220px;
     border: none;
@@ -71,7 +70,7 @@
     cursor: pointer;
 }
 
-.ra-button-no {
+.datawall-button-no {
     height: 40px;
     width: 220px;
     margin-left: 50px;

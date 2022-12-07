@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4NQJQJYR8"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-N4NQJQJYR8"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-        gtag('config', 'G-N4NQJQJYR8');
+      gtag('config', 'G-N4NQJQJYR8');
     </script>
 
     <!-- Google Tag Manager -->
     <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-NW9Q6D4');
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-NW9Q6D4');
     </script>
     <!-- End Google Tag Manager -->
 
@@ -35,12 +37,18 @@
     <script src="datawall.js"></script>
     <link rel="stylesheet" href="datawall.css" />
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NW9Q6D4" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NW9Q6D4"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Axate wrapper test -->
@@ -55,26 +63,40 @@
         </div>
     </div> -->
 
-    <!-- Rotherham Advertiser modal -->
-    <div id="ra-modal-container" class="ra-modal-container">
-        <div class="ra-modal">
-            <div class="ra-modal-body">
-                <div class="ra-modal-logo">
-                    <img alt="Publisher Logo" src="https://www.rotherhamadvertiser.co.uk/roubaix/ra.png">
-                </div>
-                <p id="datawall-main-text">
-                    Thank you for visiting our site for the third time this week. We value you as a regular reader of
-                    our content. To help support our journalism we want to ask if you would be prepared to take out a
-                    small digital subscription to read more of our content. At this stage we are simply asking for your
-                    opinion.
-                </p>
-            </div>
-            <div class="ra-modal-footer">
-                <button id="datawall-yes" class="ra-button-yes" onclick="dismissModal('YES')">YES</button>
-                <button id="datawall-no" class="ra-button-no" onclick="dismissModal('NO')">NO</button>
-            </div>
+    <!-- Datawall modal -->
+    <div id="datawall-modal-container" class="datawall-modal-container">
+      <div class="datawall-modal">
+        <div class="datawall-modal-body">
+          <div class="datawall-modal-logo">
+            <img
+              alt="Publisher Logo"
+              src="https://www.rotherhamadvertiser.co.uk/roubaix/ra.png"
+            />
+          </div>
+          <p id="datawall-main-text">
+            We value you as a regular reader of our content. To help support our
+            journalism we want to ask if you would be prepared to take out a
+            small digital subscription to read more of our content. At this
+            stage we are simply asking for your opinion.
+          </p>
         </div>
+        <div class="datawall-modal-footer">
+          <button
+            id="datawall-button-yes"
+            class="datawall-button-yes"
+            onclick="dismissModal('YES')"
+          >
+            YES
+          </button>
+          <button
+            id="datawall-button-no"
+            class="datawall-button-no"
+            onclick="dismissModal('NO')"
+          >
+            NO
+          </button>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

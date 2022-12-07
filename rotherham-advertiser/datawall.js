@@ -1,9 +1,9 @@
 /* ----- CONFIGURATIONS ----- */
 
-const WAIT_TO_LOAD_POPUP_IN_SECONDS = 15;
-const POPUP_HTML_ID = 'ra-modal-container';
+const WAIT_TO_LOAD_POPUP_IN_SECONDS = 20;
+const POPUP_HTML_ID = 'datawall-modal-container';
 const POPUP_MAIN_TEXT_ID = 'datawall-main-text';
-const POPUP_MAIN_TEXT_2ND_WORDING = 'As a loyal reader you are aware we are interested in your views on the possibility of paying for content to enable us to sustain the quality journalism that has served the town since 1858. Please let us know if you would be prepared to support us by taking out a small monthly subscription.';
+const POPUP_MAIN_TEXT_2ND_WORDING = 'As a loyal reader you are aware we are interested in your views on the possibility of paying for content to enable us to sustain the quality journalism and help shape our future digital offering. We want to know if you would be prepared to support a monthly subscription to our website.';
 
 // Axate
 const AXATE_WRAPPER_ID = 'axate-wallet-wrapper';

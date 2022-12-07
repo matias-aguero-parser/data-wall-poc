@@ -1,5 +1,4 @@
-/* Barnsley Chronicle */
-.bc-modal-container {
+.datawall-modal-container {
     /* ----- CONFIGURATIONS ----- */
 
     --modal-background: rgba(0, 0, 0, .5);
@@ -30,7 +29,7 @@
     }
 }
 
-.bc-modal {
+.datawall-modal {
     display: flex;
     flex-direction: column;
     width: 550px;
@@ -43,30 +42,30 @@
     text-align: center;
 }
 
-.bc-modal-body {
+.datawall-modal-body {
     padding: 30px 40px;
 }
 
-.bc-modal-body p {
+.datawall-modal-body p {
     margin: 30px 0px;
 }
 
-.bc-modal-logo {
+.datawall-modal-logo {
     display: flex;
     justify-content: center;
 }
 
-.bc-modal-logo img {
+.datawall-modal-logo img {
     width: 360px;
     max-width: 100%;
 }
 
-.bc-modal-footer {
+.datawall-modal-footer {
     display: flex;
     justify-content: center;
 }
 
-.bc-button-yes {
+.datawall-button-yes {
     padding: 10px 30px;
     border: none;
     background-color: var(--theme-color);
@@ -76,7 +75,7 @@
     cursor: pointer;
 }
 
-.bc-button-no {
+.datawall-button-no {
     padding: 10px 30px;
     margin-left: 50px;
     border: none;
