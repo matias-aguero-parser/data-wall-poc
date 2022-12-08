@@ -1,6 +1,6 @@
 /* ----- CONFIGURATIONS ----- */
 
-const WAIT_TO_LOAD_POPUP_IN_SECONDS = 20;
+const WAIT_TO_LOAD_POPUP_IN_SECONDS = 3;
 const POPUP_HTML_ID = 'datawall-modal-container';
 const POPUP_MAIN_TEXT_ID = 'datawall-main-text';
 const POPUP_MAIN_TEXT_2ND_WORDING = 'As a loyal reader you are aware we are interested in your views on the possibility of paying for content to enable us to sustain the quality journalism and help shape our future digital offering. We want to know if you would be prepared to support a monthly subscription to our website.';
@@ -10,7 +10,7 @@ const AXATE_WRAPPER_ID = 'axate-wallet-wrapper';
 const AXATE_SUBSCRIBER_ATTRIBUTE_ID = 'data-subscribed-at';
 
 // Feature Flags - Features can be disabled setting flags to false
-const DATA_WALL_FEATURE_FLAG = false;
+const DATA_WALL_FEATURE_FLAG = true;
 const DATA_WALL_SUBSCRIBER_FEATURE_FLAG = true;
 
 // Cookies
