@@ -4,7 +4,7 @@ const WAIT_TO_LOAD_POPUP_IN_SECONDS = 15;
 const POPUP_HTML_ID = 'datawall-modal-container';
 
 // Feature Flags - Features can be disabled setting flags to false
-const DATA_WALL_FEATURE_FLAG = false;
+const DATA_WALL_FEATURE_FLAG = true;
 const DATA_WALL_SUBSCRIBER_FEATURE_FLAG = false;
 
 // Cookies
