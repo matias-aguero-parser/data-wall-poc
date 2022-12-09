@@ -1,7 +1,7 @@
 /* ----- CONFIGURATIONS ----- */
 
 const WAIT_TO_LOAD_POPUP_IN_SECONDS = 3;
-const POPUP_HTML_ID = 'blocker-container';
+const POPUP_HTML_ID = 'datawall-modal-container';
 const POPUP_MAIN_TEXT_ID = 'datawall-main-text';
 const POPUP_MAIN_TEXT_2ND_WORDING = 'As a loyal reader you are aware we are interested in your views on the possibility of paying for content to enable us to sustain the quality journalism and help shape our future digital offering. We want to know if you would be prepared to support a monthly subscription to our website.';
 
